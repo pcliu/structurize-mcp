@@ -1,0 +1,55 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 项目架构
+
+structurize-mcp/                   # 项目根目录
+├── bin/                           # 命令行工具目录
+│   └── structurize.js             # CLI 入口脚本（NodeJS 环境检查与启动）
+├── src/                           # 源代码目录
+│   ├── index.ts                   # 主入口文件（MCP 服务器配置与启动）
+│   ├── csvGenerator.ts            # CSV 文件生成核心逻辑
+│   ├── geminiClient.ts            # Google Gemini API 客户端
+│   ├── utils.ts                   # 工具函数（文件名处理、格式化等）
+│   └── types/                     # 类型定义目录
+│       ├── modelcontextprotocol.d.ts  # MCP 相关类型定义
+│       └── csvGenerator.d.ts      # CSV 生成器类型定义
+├── build/                         # 编译输出目录
+│   └── ...                       # 编译后的 JavaScript 文件
+├── csv/                          # 默认 CSV 文件输出目录
+├── node_modules/                 # 依赖包目录
+├── tsconfig.json                 # TypeScript 编译配置
+├── package.json                  # 项目依赖管理与脚本配置
+├── package-lock.json             # 依赖版本锁定文件
+└── README.md                     # 项目说明文档
+
+## 主要功能与流程
+
+### 核心功能
+- **MCP 服务器**: 提供与大型语言模型的通信接口（仅支持 MCP 协议，已移除 HTTP 服务）
+- **CSV 生成**: 根据自然语言描述生成结构化的 CSV 文件
+- **AI 集成**: 使用 Google Gemini AI 解析自然语言并生成数据
+- **命令行工具**: 提供简单的命令行接口
+- **Claude Desktop 集成**: 可作为 Claude Desktop 的 MCP 服务
+
+### 系统组件
+
+1. **MCP 服务器**
+   - 基于 @modelcontextprotocol/sdk
+   - 工具注册和处理
+   - 标准输入/输出通信
+
+2. **CSV 生成组件**
+   - 自然语言解析
+   - 列结构提取
+   - 数据生成
+   - CSV 格式化
+
+### 数据流程
+1. **用户输入** → 通过命令行、Claude Desktop 或 MCP 协议提交请求
+2. **服务器处理** → 调用 CSV 生成器
+3. **AI 处理** → 使用 Gemini 模型
+4. **结果处理** → 生成文件并返回路径
+5. **结果返回** → 返回处理结果和相关信息

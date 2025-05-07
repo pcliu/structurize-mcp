@@ -1,0 +1,60 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 开发指南
+
+## 开发环境设置
+1. **Node.js 要求**
+   - Node.js 14.0 或更高版本
+   - 推荐使用 Node.js LTS 版本
+
+2. **安装依赖**
+   ```bash
+   npm install
+   ```
+
+3. **环境变量**
+   - `GEMINI_API_KEY`: Google Gemini API 密钥
+   - 推荐使用 `.env` 文件管理环境变量
+
+## 开发流程
+1. **代码风格**
+   - 使用 TypeScript 严格模式
+   - 遵循 ESLint 规则
+   - 使用 Prettier 进行代码格式化
+
+2. **测试**
+   - 运行测试: `npm test`
+   - 添加新功能时需要包含对应的测试用例
+
+3. **调试**
+   - 使用 `npm run dev` 启动开发模式
+   - 支持 VS Code 调试配置
+
+## 提交规范
+1. **Git Commit 消息格式**
+   ```
+   <type>(<scope>): <subject>
+   ```
+   - type: feat, fix, docs, style, refactor, test, chore
+   - scope: 可选，表示影响范围
+   - subject: 简短描述
+
+2. **分支管理**
+   - main: 主分支，保持稳定
+   - develop: 开发分支
+   - feature/*: 新功能分支
+   - fix/*: 修复分支
+
+## 发布流程
+1. 更新版本号 (`npm version`)
+2. 运行测试确保全部通过
+3. 构建项目 (`npm run build`)
+4. 发布到 npm (`npm publish`)
+
+## 文档维护
+- 更新 README.md
+- 维护 API 文档
+- 更新 CHANGELOG.md

@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# API 文档
+
+## CSV 生成器 API
+主要实现在 [src/csvGenerator.ts](mdc:structurize-mcp/src/csvGenerator.ts) 中。
+
+### 核心类
+```typescript
+class CsvGenerator {
+  constructor(geminiApiKey: string, outputDir?: string);
+  
+  // 生成 CSV 文件
+  async generateCsv(description: string): Promise<string>;
+  
+  // 解析列结构
+  private async parseStructure(description: string): Promise<ColumnStructure[]>;
+  
+  // 生成数据行
+  private async generateRows(structure: ColumnStructure[], description: string): Promise<string[][]>;
+}
+```
+
+## Gemini 客户端 API
+实现在 [src/geminiClient.ts](mdc:structurize-mcp/src/geminiClient.ts) 中。
+
+### 主要接口
+```typescript
+class GeminiClient {
+  constructor(apiKey: string);
+  
+  // 发送请求到 Gemini API
+  async sendRequest(prompt: string): Promise<string>;
+  
+  // 解析结构化数据
+  async parseStructuredData(text: string): Promise<any>;
+}
+```
+
+## MCP 服务器接口
+实现在 [src/index.ts](mdc:structurize-mcp/src/index.ts) 中。
+
+### 服务器配置
+```typescript
+interface McpServerConfig {
+  geminiApiKey: string;
+  csvOutputDir?: string;
+}
+```
+
+### 主要方法
+```typescript
+// 启动 MCP 服务器
+function startMcpServer(config: McpServerConfig): Promise<void>;
+
+// 注册 CSV 生成工具
+mcpServer.tool('generate-csv', paramsSchema, handlerFn);
+```
+
+## 工具函数
+实现在 [src/utils.ts](mdc:structurize-mcp/src/utils.ts) 中。
+
+### 文件处理
+```typescript
+// 生成 CSV 文件名
+function generateCsvFilename(title: string, columns: string[]): string;
+
+// 格式化 CSV 内容
+function formatCsvContent(headers: string[], rows: string[][]): string;
+```

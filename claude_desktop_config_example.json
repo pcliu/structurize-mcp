@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "csv-generator": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/structurize-mcp/build/index.js",
+        "--gemini-api-key",
+        "YOUR_GEMINI_API_KEY_HERE",
+        "--csv-dir",
+        "/absolute/path/to/csv_output_directory"
+      ]
+    }
+  }
+} 

@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 构建流程
+
+本项目使用 TypeScript 编写，通过 `tsc` 命令进行编译。
+
+TypeScript 的编译配置在 `[tsconfig.json](mdc:structurize-mcp/tsconfig.json)` 文件中定义。
+
+编译后的 JavaScript 文件输出到 `[build/](mdc:structurize-mcp/build)` 目录。
+
+可以使用 `npm run build` 命令来执行构建。
