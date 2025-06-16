@@ -1,6 +1,6 @@
 # Structurize-MCP
 
-Structurize-MCP 是一个基于 Model Context Protocol 的服务，可以根据自然语言描述生成结构化的 CSV 文件，并能将表格图片转换为 Mermaid 图表格式。它使用 Google Gemini AI 来解析和生成数据。
+Structurize-MCP 是一个基于 Model Context Protocol 的服务，可以根据自然语言描述生成结构化的 CSV 文件。它使用 Google Gemini AI 来解析和生成数据。
 
 ## 功能特点
 
@@ -9,8 +9,6 @@ Structurize-MCP 是一个基于 Model Context Protocol 的服务，可以根据�
 - 生成描述性的文件名
 - 支持自定义分隔符
 - 当 Gemini API 调用失败时，有本地解析方法作为后备
-- 分析表格图片并转换为 Mermaid 图表格式
-- 支持简单表格和复杂关系表格的转换
 
 ## 安装
 
@@ -140,7 +138,7 @@ npx structurize-mcp --csv-dir /data/csv_exports
 
 ## 许可
 
-MIT 
+MIT
 
 ## API 端点
 
@@ -155,49 +153,33 @@ Content-Type: application/json
 }
 ```
 
-### 图片分析
+### 功能说明
 
-```bash
-POST /analyze-image
-Content-Type: multipart/form-data
-
-参数：
-- image: 要分析的图片文件（支持 JPEG/PNG 格式）
-
-响应：
-{
-  "mermaidText": "Mermaid 格式的图表文本",
-  "rawText": "原始解析文本（可选）",
-  "error": "错误信息（如果有）"
-}
-```
-
-### 示例
-
-```bash
-# 生成 CSV 文件
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"description":"生成一个包含姓名和年龄的表格"}' \
-  http://localhost:3000/generate-csv
-
-# 分析表格图片
-curl -X POST \
-  -F "image=@/path/to/your/table-image.jpg" \
-  http://localhost:3000/analyze-image
-```
-
-## 功能说明
-
-### CSV 生成
+#### CSV 生成
 - 根据自然语言描述自动生成 CSV 文件
 - 智能解析列结构和数据内容
 - 生成描述性文件名
 - 支持自定义分隔符
 
-### 图片分析
-- 支持 JPEG/PNG 格式的表格图片
-- 自动识别表格结构和内容
-- 转换为 Mermaid 图表格式
-- 支持简单表格和复杂关系表格
-- 保持表格的层级关系 
+## 获取 Google Gemini API Key
+
+要使用此工具，您需要一个 Google Gemini API Key：
+
+1. 访问 [Google AI Studio](https://aistudio.google.com/)
+2. 登录您的 Google 账户
+3. 转到 [API Keys](https://aistudio.google.com/app/apikeys) 页面
+4. 创建一个新的 API Key
+
+## CSV 文件存储
+
+- 默认情况下，CSV 文件存储在项目根目录下的 `csv` 文件夹中
+- 可以通过 `--csv-dir` 参数指定自定义存储路径
+- 生成的文件名基于 CSV 内容（标题、列名和数据）自动生成，并附加时间戳以确保唯一性
+
+## 贡献
+
+欢迎提交 Issues 和 Pull Requests。
+
+## 许可
+
+MIT 
