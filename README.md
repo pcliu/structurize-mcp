@@ -132,49 +132,12 @@ npx structurize-mcp --csv-dir /data/csv_exports
 - 可以通过 `--csv-dir` 参数指定自定义存储路径
 - 生成的文件名基于 CSV 内容（标题、列名和数据）自动生成，并附加时间戳以确保唯一性
 
-## 贡献
+## 主要功能说明
 
-欢迎提交 Issues 和 Pull Requests。
-
-## 许可
-
-MIT
-
-## API 端点
-
-### CSV 生成
-
-```bash
-POST /generate-csv
-Content-Type: application/json
-
-{
-  "description": "描述文本"
-}
-```
-
-### 功能说明
-
-#### CSV 生成
 - 根据自然语言描述自动生成 CSV 文件
 - 智能解析列结构和数据内容
 - 生成描述性文件名
 - 支持自定义分隔符
-
-## 获取 Google Gemini API Key
-
-要使用此工具，您需要一个 Google Gemini API Key：
-
-1. 访问 [Google AI Studio](https://aistudio.google.com/)
-2. 登录您的 Google 账户
-3. 转到 [API Keys](https://aistudio.google.com/app/apikeys) 页面
-4. 创建一个新的 API Key
-
-## CSV 文件存储
-
-- 默认情况下，CSV 文件存储在项目根目录下的 `csv` 文件夹中
-- 可以通过 `--csv-dir` 参数指定自定义存储路径
-- 生成的文件名基于 CSV 内容（标题、列名和数据）自动生成，并附加时间戳以确保唯一性
 
 ## 贡献
 
